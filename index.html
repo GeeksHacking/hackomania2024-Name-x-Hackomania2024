@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Management System</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: white; /* Background color for the entire page */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .phone-format {
+            width: 375px; /* Width of a typical phone screen */
+            height: 667px; /* Height of a typical phone screen */
+            overflow: hidden;
+            border-radius: 20px; /* Rounded corners for the phone screen */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Shadow effect for the phone screen */
+            background-color: #dfeed4; /* Background color for the phone screen */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .dashboard {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px; /* Spacing between dashboard sections */
+            background-color: #dfeed4; /* Background color for the dashboard (green) */
+            padding: 20px;
+            border-radius: 10px; /* Added border-radius for curvature */
+        }
+        .profile-container {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 10px; /* Added border-radius for curvature */
+        }
+        .left-column, .right-column {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .left-column p, .right-column p {
+            margin: 0;
+            padding-left: 10px;
+            color: black; /* Text color */
+            
+        }
+        .profile-container img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%; /* Added border-radius for curvature */
+            object-fit: cover;
+        }
+        .info-section {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            background-color: #f1efdf;
+            border-radius: 2px; /* Added border-radius for curvature */
+        }
+        .info-section > div {
+            flex: 1;
+            text-align: center;
+            padding: 0 10px;
+            color: black; /* Text color */
+            background-color: #f1efdf;
+        }
+        .info-section a {
+            display: inline-block;
+            margin-top: 10px;
+            color: black; /* Text color */
+            text-decoration: none;
+        }
+        .info-section a:hover {
+            text-decoration: underline;
+        }
+        .status-container {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            gap: 20px; /* Spacing between status columns */
+        }
+        .column {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            border-radius: 10px; /* Added border-radius for curvature */
+            overflow: hidden;
+            background-color: #f1efdf; /* Background color for columns (light beige) */
+            margin-bottom: 20px; /* Added margin below each column */
+            color: black; /* Text color */
+        }
+        #acColumn {
+            min-height: 100px;
+        }
+        #updateButton {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px; /* Added border-radius for curvature */
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        #updateButton:hover {
+            background-color: #0056b3;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            list-style-type: none;
+            padding: 0;
+            margin: 0 0 20px 0; /* Adjusted margin to add spacing below the tabs */
+            background-color:#E2D2CD;
+            border-radius: 10px;
+        }
+        .nav-tabs li {
+            padding: 10px 20px;
+        }
+        .nav-tabs a {
+            text-decoration: none;
+            color: black;
+        }
+        .nav-tabs a:hover {
+            text-decoration: underline;
+        }
+
+        .nav-tabs img {
+            width: 50px; /* Adjust the width as needed */
+            height: auto; /* Maintain the aspect ratio */
+        }
+
+        .container1,
+        .container2 {
+            background-color: #f1efdf; /* Light beige background color */
+            padding: 10px;
+            border-radius: 10px; /* Rounded corners */
+            margin-bottom: 20px; /* Spacing below the containers */
+        }
+
+        .container1 p {
+            margin: 5px 0; /* Margin between each point in container 1 */
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-format">
+        <div class="dashboard">
+            <div class="profile-container">
+                <div class="left-column">
+                    <img src="https://media.tenor.com/9GsBQZZCwF8AAAAM/dumb-dog.gif" alt="Profile Picture">
+                    <p>Hello, User: X</p>
+                </div>
+                <div class="right-column">
+                    <p>Chatbot  ⚙️ </p>
+                </div>
+            </div>
+            <div class="info-section">
+                <div>
+                    <p id="time">--:--</p>
+                    <p>Sunday, 7th April 2024</p>
+                    <p id="weather">°C</p>
+                </div>
+                <div>
+                    <p>Number of devices: 3</p>
+                    <p>Energy used: 25 kWh </p>
+                    <a href="applicahome.html" target="_blank">adjust details</a>
+                </div>
+            </div>
+            <div class="status-container">
+                <div class="column" id="lightColumn">
+                    <p id="lightStatus">Lights: --</p>
+                </div>
+                <div class="column" id="acColumn">
+                    <p id="acStatus">AC: --</p>
+                </div>
+            </div>
+            <button id="updateButton" onclick="updateSyst()">Update Status</button>
+        </div>
+
+        <div class="container1">
+            <p> RECOMMENDATIONS ! 
+                1. Try using your fans more! 
+                2. Limit some AC usage
+                3. Room 3 seems to have abnormal energy usage! Watch for unnecessary consumption </p>
+        </div>
+        <ul class="nav-tabs">
+            <li><a href="index.html">
+                <img src = "https://cdn.discordapp.com/attachments/1153178141855072317/1226354152809173023/IMG_6666.png?ex=6624764e&is=6612014e&hm=fe4e5b39ef5f7217192e936358d304ec0f60d31c29f0ecd79e787f5c7682d515&" ></a></li>
+            <li><a href="applicahome.html">
+                <img src = "https://cdn.discordapp.com/attachments/1153178141855072317/1226354153379598477/IMG_6668.png?ex=6624764e&is=6612014e&hm=8183022e4c023445d8918588333268e2ea94c18c7056454287ddd4252cf5f33c&"></a></li>
+            <li><a href="rooms.html">
+                <img src = "https://cdn.discordapp.com/attachments/1153178141855072317/1226354153140387870/IMG_6667.png?ex=6624764e&is=6612014e&hm=35ba89ddb1dc128d092bed5b151eb319f6b11ad42eee57024ee0532169072856&">
+            </a></li>
+        </ul>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Appliance</title>
+    <link rel="stylesheet" href="cssappliance.css">
+</head>
+<body>
+    <h1>Add Your Electronic Appliance</h1>
+    <form id="applianceForm">
+        <label for="applianceType">Appliance Type:</label>
+        <select id="applianceType" name="applianceType" required>
+            <option value="">Select an appliance...</option>
+            <option value="Fan">Fan</option>
+            <option value="Air Conditioner">Air Conditioner</option>
+            <option value="Refrigerator">Refrigerator</option>
+            <option value="Other">Other</option>
+        </select>
+        <input type="text" id="otherAppliance" name="otherAppliance" placeholder="If other, specify here" style="display:none;">
+        
+        <label for="energyUsed">Energy Used (in watts):</label>
+        <input type="number" id="energyUsed" name="energyUsed" required>
+        
+        <button type="submit">Done</button>
+    </form>
+    <script src="applicationapp.js"></script>
+</body>
+</html>
