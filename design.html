@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Energy Usage Tracker</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #DFEED4;
+    margin: 0;
+    padding: 0;
+  }
+  .room-container {
+    margin: 20px;
+    border-radius: 10px;
+    background-color: #E1DFCF;
+    padding: 30px; /* increased padding */
+    margin-bottom: 20px; /* increased margin-bottom */
+    position: relative;
+  }
+  .room-title {
+    font-weight: bold;
+    margin-bottom: 20px; /* increased margin-bottom */
+  }
+  .energy-usage {
+    border-radius: 10px; /* adjusted border-radius to match parent */
+    background-color: #E2D2CB;
+    padding: 10px; /* decreased padding */
+    text-align: center;
+    margin-top: 30px; /* increased margin-top */
+    width: 100%; /* adjusted width to fit parent */
+  }
+  .add-room-button {
+    width: 40px;
+    height: 40px;
+    background-color: #E1DFCF;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    color: #929292;
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+  }
+  .above-average {
+    background-color: red;
+    color: white;
+  }
+</style>
+</head>
+<body>
+<div id="roomContainer"></div>
+<button class="add-room-button" onclick="addRoom()">+</button>
+</div>
+<ul class="nav-tabs">
+    <li><a href="index.html">
+        <img src = "https://cdn.discordapp.com/attachments/1153178141855072317/1226354152809173023/IMG_6666.png?ex=6624764e&is=6612014e&hm=fe4e5b39ef5f7217192e936358d304ec0f60d31c29f0ecd79e787f5c7682d515&" ></a></li>
+    <li><a href="graph.html">
+        <img src = "https://cdn.discordapp.com/attachments/1153178141855072317/1226354153379598477/IMG_6668.png?ex=6624764e&is=6612014e&hm=8183022e4c023445d8918588333268e2ea94c18c7056454287ddd4252cf5f33c&"></a></li>
+    <li><a href="design.html">
+        <img src = "https://cdn.discordapp.com/attachments/1153178141855072317/1226354153140387870/IMG_6667.png?ex=6624764e&is=6612014e&hm=35ba89ddb1dc128d092bed5b151eb319f6b11ad42eee57024ee0532169072856&">
+    </a></li>
+</ul>
+</div>
+
+<script>
+  function addRoom() {
+    var roomContainer = document.getElementById('roomContainer');
+
+    var roomDiv = document.createElement('div');
+    roomDiv.classList.add('room-container');
+
+    var roomTitle = document.createElement('div');
+    roomTitle.classList.add('room-title');
+    roomTitle.textContent = 'Room: ';
+
+    var roomSelect = document.createElement('select');
+    var roomOptions = ['None', 'Bedroom', 'Kitchen', 'Toilet', 'Living Room']; // Updated room options
+    roomOptions.forEach(function(option) {
+      var optionElement = document.createElement('option');
+      optionElement.textContent = option;
+      roomSelect.appendChild(optionElement);
+    });
+    roomTitle.appendChild(roomSelect);
+    roomDiv.appendChild(roomTitle);
+
+    var energyUsageDiv = document.createElement('div');
+    energyUsageDiv.classList.add('energy-usage');
+
+    var energyTitle = document.createElement('div');
+    energyTitle.textContent = 'Average Energy Used Today';
+    energyUsageDiv.appendChild(energyTitle);
+
+    var energyValue = document.createElement('div');
+    var energyUsage = 0; // Default value
+    roomSelect.addEventListener('change', function() {
+      if (roomSelect.value !== 'None') {
+        energyUsage = Math.floor(Math.random() * 50) + 1; // Generate random energy usage
+        energyValue.textContent = energyUsage + ' kWh';
+      } else {
+        energyUsage = 0;
+        energyValue.textContent = energyUsage + ' kWh';
+      }
+
+      if (energyUsage > 29) {
+        energyUsageDiv.classList.add('above-average');
+        var aboveAverageLabel = document.createElement('div');
+        aboveAverageLabel.textContent = 'Energy usage here exceeds average';
+        energyUsageDiv.appendChild(aboveAverageLabel);
+      } else {
+        energyUsageDiv.classList.remove('above-average');
+        var aboveAverageLabel = energyUsageDiv.querySelector('.above-average-label');
+        if (aboveAverageLabel) {
+          energyUsageDiv.removeChild(aboveAverageLabel);
+        }
+      }
+    });
+    energyUsageDiv.appendChild(energyValue);
+    roomDiv.appendChild(energyUsageDiv);
+    roomContainer.appendChild(roomDiv);
+  }
+</script>
+</body>
+</html>
+
+
+
